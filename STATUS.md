@@ -17,3 +17,27 @@
 
 ## Next concrete step
 - Publish the itch.io listing (blocked: no itch.io credential; `butler login` is interactive). Then drive traffic: r/indiegames, r/WebGames, r/ExperimentalGame, itch community boards; the 1200x630 memory card is the share hook.
+
+## Run 2026-11-20 21:42 (this run)
+- docs gate: `python scripts/docs_gate.py check` -> allowed=true, exit 0.
+- picked NULL TIDE (closest to shippable); backlog `itch-3` (itch store page +
+  launch assets) was `running` with an orphaned job and no output on disk.
+- completed itch-3 with real artifacts:
+  - `sharecard.py` — deterministic 1200x630 cover/memory-card generator (Pillow,
+    no network, no downloads, no paid APIs).
+  - `test_sharecard.py` — 8 tests (dimensions, determinism, seed variance,
+    string seeds, title/poem variance, valid PNG on disk, CLI write).
+  - `python -m pytest test_sharecard.py -q` (hermes-agent venv, pytest 9.1.1)
+    -> 8 passed in 1.20s, exit 0.
+  - `assets/cover-1200x630.png` (50747 bytes) and
+    `assets/sample-memory-card.png` (38066 bytes), both verified PNG 1200x630.
+  - `STORE.md` (paste-ready itch.io store page) and `LAUNCH.md` (zero-spend
+    launch + 4-week traffic plan).
+- re-verified existing state: `node --test tests/sim.test.mjs` -> 15/15, exit 0;
+  live GitHub Pages URL -> HTTP 200.
+- total verified tests for this product: 23.
+
+## Next concrete step
+- itch.io publish is the only true blocker (no credential; `butler login` is
+  interactive). Everything publishable is now staged in STORE.md / PUBLISH.md.
+- Next unblocked rail: Game Jolt listing + devlog plan (backlog `gj-1`).

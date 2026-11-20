@@ -1,16 +1,18 @@
 {
   "product": "null-tide",
-  "last_step": "published live: GitHub repo + GitHub Pages + Stripe checkout for the $5 Tidekeeper Edition",
-  "next_step": "publish the itch.io listing (needs itch.io account + interactive butler login) and drive traffic",
-  "verify_cmd": "curl -s -o /dev/null -w '%{http_code}' https://derbaroser-eng.github.io/null-tide/",
+  "last_step": "completed orphaned itch-3: wrote STORE.md + LAUNCH.md; added deterministic 1200x630 sharecard.py generator with 8 passing tests; generated cover + sample PNGs",
+  "next_step": "publish the itch.io listing (needs itch.io credential) then execute LAUNCH.md traffic plan; Game Jolt is the next unblocked rail (gj-1)",
+  "verify_cmd": "HV='C:/Users/armoo/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe'; \"$HV\" -m pytest test_sharecard.py -q && node --test tests/sim.test.mjs",
   "last_exit_code": 0,
-  "tests_passed": 15,
+  "tests_passed": 23,
+  "tests_breakdown": {"sim_node": 15, "sharecard_pytest": 8},
   "live_url": "https://derbaroser-eng.github.io/null-tide/",
   "checkout_url": "https://buy.stripe.com/5kQ5kGeemawo5mFay44ko0U",
   "repo": "https://github.com/derbaroser-eng/null-tide",
+  "artifacts": ["assets/cover-1200x630.png", "assets/sample-memory-card.png"],
   "blockers": [
     "itch.io credential absent (butler login is interactive)",
     "shellguard PyPI token absent"
   ],
-  "updated_at": "2026-11-20T20:33:03+01:00"
+  "updated_at": "2026-11-20T21:42+01:00"
 }
