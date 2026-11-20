@@ -1,0 +1,13 @@
+{
+  "name": "NULL TIDE — The City That Remembers Water",
+  "short_name": "NULL TIDE",
+  "description": "You are the tide. Flood. Recede. Be remembered. A 12-minute god-elegy in your browser.",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#040b14",
+  "theme_color": "#06121f",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

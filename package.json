@@ -1,0 +1,10 @@
+{
+  "name": "null-tide",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "NULL TIDE - The City That Remembers Water. A 12-minute god-elegy in your browser.",
+  "scripts": {
+    "test": "node --test tests/sim.test.mjs"
+  }
+}

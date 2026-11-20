@@ -1,0 +1,4 @@
+__pycache__/
+.hermes-tmp*
+.local/
+node_modules/

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>NULL TIDE — The City That Remembers Water</title>
+<meta name="description" content="You are the tide. Flood. Recede. Be remembered. A 12-minute god-elegy in your browser.">
+<meta name="theme-color" content="#06121f">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <canvas id="game" width="960" height="600" aria-label="Null Tide game canvas"></canvas>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div id="tide-ring-wrap" title="Tide cycle">
+      <svg id="tide-ring" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="6"/>
+        <circle id="tide-arc" cx="32" cy="32" r="26" fill="none" stroke="#e8b34b" stroke-width="6"
+          stroke-linecap="round" stroke-dasharray="163.3" stroke-dashoffset="163.3" transform="rotate(-90 32 32)"/>
+        <text id="tide-num" x="32" y="38" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">1</text>
+      </svg>
+      <div id="tide-label">HOLD TO RECEDE</div>
+    </div>
+    <div id="city-name"></div>
+    <div id="top-btns">
+      <button id="btn-mute" class="chip" aria-label="Mute">♪</button>
+      <button id="btn-pause" class="chip" aria-label="Pause">II</button>
+      <button id="btn-bell" class="chip bell" aria-label="Ring the Deep Bell early" title="Ring the Deep Bell early (E)">🔔</button>
+    </div>
+    <div id="toast-wrap"><div id="toast"></div></div>
+    <div id="prompt-bar"><span id="prompt-text"></span></div>
+    <div id="carry-bar" class="hidden">
+      <span id="carry-icon">🐚</span>
+      <span id="carry-name"></span>
+      <span id="carry-hint">— tap a district to bestow it</span>
+    </div>
+  </div>
+
+  <!-- Title screen -->
+  <div id="screen-title" class="screen">
+    <div class="card title-card">
+      <div class="kicker">an elegy in ten tides · headphones recommended</div>
+      <h1>NULL<br>TIDE</h1>
+      <div class="sub">The City That Remembers Water</div>
+      <p class="lore">You are not the hero. You are the tide.<br>
+      <b>HOLD</b> to pull the sea back. <b>RELEASE</b> to let it return.<br>
+      What you leave behind, the city will worship.</p>
+      <div class="seed-row">
+        <input id="seed-input" maxlength="12" placeholder="seed — e.g. TIDE-7F3K" autocomplete="off" spellcheck="false">
+        <button id="btn-new-seed" class="ghost" title="Random seed">⟳</button>
+      </div>
+      <button id="btn-begin" class="big">BECOME THE TIDE</button>
+      <div class="row-links">
+        <button id="btn-how" class="link">how to play</button>
+        <span class="dot">·</span>
+        <button id="btn-settings" class="link">settings</button>
+        <span class="dot">·</span>
+        <button id="btn-credits" class="link">about</button>
+      </div>
+      <div id="howto" class="hidden">
+        <p>🌊 <b>Hold</b> anywhere (finger / mouse / SPACE) to <b>recede</b>. Release to <b>flood</b>.</p>
+        <p>🐚 When the seabed glints, <b>tap a glowing object</b> to lift it, then <b>tap a district</b> to bestow it.</p>
+        <p>🏮 Watch what they build. Two gifts of a kind forge a <b>trait</b> — Festival, Tender, Militarist…</p>
+        <p>🔔 After 10 tides the Deep Bell rings and the city writes your <b>eulogy</b>.</p>
+      </div>
+      <div class="warn">gentle content note: themes of drowning &amp; loss, handled tenderly · photosensitive-safe mode in settings</div>
+      <div id="best-line" class="best hidden"></div>
+    </div>
+  </div>
+
+  <!-- Omen choice modal -->
+  <div id="screen-omen" class="screen hidden">
+    <div class="card omen-card">
+      <div class="kicker" id="omen-kicker">OMEN · TIDE 4</div>
+      <h2 id="omen-title">STORM COMING</h2>
+      <p id="omen-text"></p>
+      <button id="omen-a" class="choice"></button>
+      <button id="omen-b" class="choice alt"></button>
+    </div>
+  </div>
+
+  <!-- Pause -->
+  <div id="screen-pause" class="screen hidden">
+    <div class="card">
+      <h2>PAUSED — the sea holds its breath</h2>
+      <div class="btn-col">
+        <button id="btn-resume" class="big">RESUME</button>
+        <button id="btn-restart" class="ghost">restart this city</button>
+        <button id="btn-quit" class="ghost">abandon to title</button>
+      </div>
+      <div class="settings">
+        <label>Tide speed
+          <select id="set-speed"><option value="0.85">gentle 0.85×</option><option value="1" selected>even 1×</option><option value="1.25">fierce 1.25×</option></select>
+        </label>
+        <label class="chk"><input type="checkbox" id="set-safe"> photosensitive-safe mode</label>
+        <label class="chk"><input type="checkbox" id="set-reduced"> reduce rain &amp; ripple motion</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Eulogy -->
+  <div id="screen-end" class="screen hidden">
+    <div class="card end-card">
+      <div class="kicker">THE DEEP BELL RINGS · THE TIDE LEAVES FOREVER</div>
+      <h2 id="end-city">Salt-Mourns remembers you</h2>
+      <div id="end-title">THE HALF-MERCIFUL</div>
+      <div id="end-poem"></div>
+      <canvas id="sharecard" width="1200" height="630" class="hidden"></canvas>
+      <img id="share-preview" alt="Share card preview">
+      <div id="end-traits"></div>
+      <div class="btn-col">
+        <button id="btn-copy-seed" class="big">COPY SEED · <span id="end-seed">TIDE-0000</span></button>
+        <div class="btn-row">
+          <button id="btn-png" class="ghost">⬇ download memory-card (PNG)</button>
+          <button id="btn-again" class="ghost">↻ new city</button>
+        </div>
+        <div class="seed-row">
+          <input id="visit-input" maxlength="12" placeholder="visit a friend's seed…" autocomplete="off" spellcheck="false">
+          <button id="btn-visit" class="ghost">visit →</button>
+        </div>
+        <div class="tip">If this city moved you, toss a coin on itch to keep the tide alive. ♥</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="vignette"></div>
+  <div id="hold-hint">HOLD</div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
