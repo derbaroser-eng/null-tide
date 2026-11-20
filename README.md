@@ -8,6 +8,9 @@ around it. Every run ends with a four-line eulogy and a title. That is the score
 
 **Play free:** https://derbaroser-eng.github.io/null-tide/
 
+**Tidekeeper Edition (USD 5):** https://buy.stripe.com/5kQ5kGeemawo5mFay44ko0U
+Offline build + full ambient OST + seed artbook + credits.
+
 ## Run it
 
 Open `index.html` in any modern browser, or serve the folder:

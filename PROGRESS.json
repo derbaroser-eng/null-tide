@@ -1,0 +1,16 @@
+{
+  "product": "null-tide",
+  "last_step": "published live: GitHub repo + GitHub Pages + Stripe checkout for the $5 Tidekeeper Edition",
+  "next_step": "publish the itch.io listing (needs itch.io account + interactive butler login) and drive traffic",
+  "verify_cmd": "curl -s -o /dev/null -w '%{http_code}' https://derbaroser-eng.github.io/null-tide/",
+  "last_exit_code": 0,
+  "tests_passed": 15,
+  "live_url": "https://derbaroser-eng.github.io/null-tide/",
+  "checkout_url": "https://buy.stripe.com/5kQ5kGeemawo5mFay44ko0U",
+  "repo": "https://github.com/derbaroser-eng/null-tide",
+  "blockers": [
+    "itch.io credential absent (butler login is interactive)",
+    "shellguard PyPI token absent"
+  ],
+  "updated_at": "2026-11-20T20:33:03+01:00"
+}

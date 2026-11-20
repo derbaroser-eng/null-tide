@@ -5,6 +5,7 @@
 **Genre:** god-game / atmospheric experiment / short-form elegy
 **Session length:** ~12 minutes (10 tides, one ending)
 **Price:** free in the browser · **$5 Tidekeeper Edition** (downloadable build + OST + seed artbook)
+**Tidekeeper checkout:** https://buy.stripe.com/5kQ5kGeemawo5mFay44ko0U
 **Platform:** HTML5, runs in any modern browser, no install, no account
 
 ---
