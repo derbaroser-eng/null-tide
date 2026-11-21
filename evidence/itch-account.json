@@ -1,0 +1,38 @@
+{
+  "product": "null-tide / itch.io publisher automation",
+  "task": "t_e85d1bfd",
+  "report_date": "2026-11-21",
+  "account": {
+    "creator": "derbaroser@gmail.com",
+    "handle": "@derbaroser",
+    "exists": false,
+    "exists_confidence": "unknown while IP-wide 429 is active (last clean answer: 404 on profile)",
+    "last_check_http": {
+      "home": 429,
+      "profile": 429,
+      "signup": 404
+    },
+    "last_check_ts": "2026-11-21T10:28:36Z",
+    "last_check_note": "itch_probe.py rc=2 GATE=RATE_LIMITED, 2026-11-21T10:28:36Z: home 429, profile 429, signup 404 (openresty IP block on this egress). Account remains absent. One-shot probe, no retries (stated-blocker policy).",
+    "probe_gate_script": "itch_probe.py (exit 0 = OPEN, ready for real-browser signup; exit 2 = back off)"
+  },
+  "butler": {
+    "exe": "workspace/tools/butler/windows-amd64/butler.exe",
+    "version": "v15.32.0",
+    "sha256": "3b5b0ecbdc881fb5394a9094bce13dfcfc602e9c586224b44adc9f859eaf1222",
+    "audit_ref": "workspace/business/security_audit.jsonl",
+    "status": "AV-clean, green-lit"
+  },
+  "upload_artifact": {
+    "path": "dist/null-tide-1.0.0-itch.zip",
+    "size_bytes": 24230,
+    "integrity": "OK (zip built by itch-build.py rc=0)"
+  },
+  "email_verification": {
+    "status": "NOT STARTED",
+    "mailer": "outreach/send-mail/mailer.py (dry-run by default; --send to deliver)",
+    "inbox_access": "pending account creation (IMAP poll per task spec)"
+  },
+  "required_next_verification": "signup page returns HTTP 200 (not 429/redirect) AND verification email actually received in derbaroser@gmail.com inbox; then API key creation; then butler login.",
+  "notes": "Recaptcha/Turnstile headless bypass is not possible in this environment; stated blockers rot - re-probe before accepting."
+}

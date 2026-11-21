@@ -1,0 +1,22 @@
+# butler-auth.log — NULL TIDE itch.io publish path (kanban t_e85d1bfd)
+# Honest state: binary verified; NOT authenticated. No itch.io account exists
+# yet, so no API key / credentials are available. No login has been attempted
+# successfully. This file records real command output only.
+
+[2026-11-21 10:28 UTC] butler.exe -V  (re-verified this run)
+  cmd: C:/Users/armoo/AppData/Local/hermes/workspace/tools/butler/windows-amd64/butler.exe -V
+  out: v15.32.0, built on Oct  6 2026 @ 06:11:49, ref 336f95416289de8fd17589000d48de5526c1a8f2
+  rc:  0
+  sha256 of downloaded zip: 3b5b0ecbdc881fb5394a9094bce13dfcfc602e9c586224b44adc9f859eaf1222
+  audit: workspace/business/security_audit.jsonl (allowed:true, Defender clean)
+
+[auth] NOT AUTHENTICATED — blocked upstream of butler:
+  - itch.io account @derbaroser absent (last clean check 404; current probes 429).
+  - Signup gated by Cloudflare Turnstile + IP-wide OpenResty 429 on this egress.
+  - Resume ONLY when `python itch_probe.py` exits 0 (signup HTTP 200, no redirect):
+      1. real-browser signup with derbaroser@gmail.com
+      2. mailer-driven email verification (IMAP poll 60s)
+      3. itch.io Settings > API Keys -> key to vault (never echo it)
+      4. butler login / BUTLER_API_KEY env
+      5. butler push dist/null-tide-1.0.0-itch.zip derbaroser/null-tide:html
+  - Upload artifact ready: dist/null-tide-1.0.0-itch.zip (24,230 B, integrity OK).
