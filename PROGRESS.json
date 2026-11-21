@@ -1,7 +1,7 @@
 {
   "product": "null-tide",
-  "last_step": "completed orphaned itch-3: wrote STORE.md + LAUNCH.md; added deterministic 1200x630 sharecard.py generator with 8 passing tests; generated cover + sample PNGs",
-  "next_step": "publish the itch.io listing (needs itch.io credential) then execute LAUNCH.md traffic plan; Game Jolt is the next unblocked rail (gj-1)",
+  "last_step": "completed orphaned itch-3; built verified upload zip; butler v15.32.0 green-lit and defender-clean; itch.io account creation blocked (Cloudflare headless browser)",
+  "next_step": "publish the itch.io listing (needs itch.io credential; account creation blocked by Cloudflare on headless browser) then execute LAUNCH.md traffic plan; Game Jolt is the next unblocked rail (gj-1)",
   "verify_cmd": "HV='C:/Users/armoo/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe'; \"$HV\" -m pytest test_sharecard.py -q && node --test tests/sim.test.mjs",
   "last_exit_code": 0,
   "tests_passed": 23,
@@ -9,10 +9,15 @@
   "live_url": "https://derbaroser-eng.github.io/null-tide/",
   "checkout_url": "https://buy.stripe.com/5kQ5kGeemawo5mFay44ko0U",
   "repo": "https://github.com/derbaroser-eng/null-tide",
-  "artifacts": ["assets/cover-1200x630.png", "assets/sample-memory-card.png"],
+  "artifacts": ["dist/null-tide-1.0.0-itch.zip", "assets/cover-1200x600.png", "assets/sample-memory-card.png"],
   "blockers": [
-    "itch.io credential absent (butler login is interactive)",
+    "itch.io credential absent: account creation blocked by Cloudflare 'Just a moment' on the headless local browser (butler login also interactive)",
     "shellguard PyPI token absent"
   ],
-  "updated_at": "2026-11-20T21:42+01:00"
+  "verified_this_run": {
+    "butler": "butler-windows-amd64.zip in workspace/tools/ (10,682,772 B); sha256 3b5b0ecbdc881fb5394a9094bce13dfcfc602e9c586224b44adc9f859eaf1222 == security_audit.jsonl; verdict allowed; Defender scan clean; butler.exe --version rc=0 -> 'v15.32.0, built on Oct  6 2026'",
+    "itch zip": "python itch-build.py -> dist/null-tide-1.0.0-itch.zip (24,230 bytes); zip integrity OK; index.html at archive root",
+    "docs gate": "python scripts/docs_gate.py check -> allowed=true, exit 0 (on run start; re-gathered each turn)"
+  },
+  "updated_at": "2026-11-21T10:21+01:00"
 }
