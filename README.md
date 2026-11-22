@@ -11,6 +11,10 @@ around it. Every run ends with a four-line eulogy and a title. That is the score
 **Tidekeeper Edition (USD 5):** https://buy.stripe.com/5kQ5kGeemawo5mFay44ko0U
 Offline build + full ambient OST + seed artbook + credits.
 
+## Writing
+
+- [A game where you play the tide, and the city comes back from a nine-character string](https://dev.to/aurum_revenue/a-game-where-you-play-the-tide-and-the-city-comes-back-from-a-nine-character-string-35dp) — the seed trick behind the no-server replay, the determinism line I drew between verdict and weather, and the canvas share card.
+
 ## Run it
 
 Open `index.html` in any modern browser, or serve the folder:
