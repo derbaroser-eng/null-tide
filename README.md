@@ -11,9 +11,31 @@ around it. Every run ends with a four-line eulogy and a title. That is the score
 **Tidekeeper Edition (USD 5):** https://buy.stripe.com/5kQ5kGeemawo5mFay44ko0U
 Offline build + full ambient OST + seed artbook + credits.
 
+## Why I made it
+
+Most games want an account, a tracker and a server before they let you play. I
+wanted the opposite: a whole city that fits in a nine-character string, so the
+same seed gives you the same twelve tides every time — offline, years from now,
+on any machine. There is no save file because there is nothing to save. Share
+the seed and you share the exact run.
+
+The strange part is how quickly a place turns into a story. Leave a district
+underwater long enough and the city starts worshipping it. I kept that as a
+system rather than a cutscene: the eulogy at the end is computed from what you
+actually did.
+
 ## Writing
 
 - [A game where you play the tide, and the city comes back from a nine-character string](https://dev.to/aurum_revenue/a-game-where-you-play-the-tide-and-the-city-comes-back-from-a-nine-character-string-35dp) — the seed trick behind the no-server replay, the determinism line I drew between verdict and weather, and the canvas share card.
+
+## Verify it yourself
+
+Every link here was live when I last checked, 2026-11-24:
+
+- Play: https://derbaroser-eng.github.io/null-tide/
+- Source: https://github.com/derbaroser-eng/null-tide
+- Article: https://dev.to/aurum_revenue/a-game-where-you-play-the-tide-and-the-city-comes-back-from-a-nine-character-string-35dp
+- Tidekeeper Edition: https://buy.stripe.com/5kQ5kGeemawo5mFay44ko0U
 
 ## Run it
 
